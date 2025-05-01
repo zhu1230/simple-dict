@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>快字典 - 极致体验的中英文在线词典</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #fdf6f7; /* Lighter background to complement theme */
+      color: #333;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    header {
+      background-color: #F3C0C7; /* Theme color */
+      color: #444; /* Darker text for light background */
+      padding: 15px 0; /* Adjusted padding */
+      /* text-align: center; Removed */
+    }
+    /* Style for the header content alignment */
+    .header-content {
+      display: flex;
+      align-items: center; /* Vertically align logo and text */
+      justify-content: center; /* Center the flex items */
+      gap: 15px; /* Space between logo and title group */
+      flex-wrap: wrap; /* Allow wrapping on small screens */
+    }
+    /* Style for the logo */
+    header .logo {
+      /* display: block; Removed */
+      max-height: 50px; /* Control the size, adjust as needed */
+      width: auto;      /* Maintain aspect ratio */
+      margin: 0; /* Reset margin */
+      flex-shrink: 0; /* Prevent logo from shrinking */
+    }
+    /* Group for title and subtitle */
+    .title-group {
+      text-align: left; /* Align text to the left within this group */
+    }
+    .title-group h1 {
+      margin: 0; /* Reset margin */
+      font-size: 2.2em; /* Adjusted font size */
+      line-height: 1.1;
+    }
+    .title-group p {
+      font-size: 1em; /* Adjusted font size */
+      opacity: 0.9;
+      margin: 5px 0 0 0; /* Add some top margin */
+    }
+    .hero {
+      background-color: #fff;
+      padding: 60px 20px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+      overflow: hidden; /* Contain rotated elements if needed */
+    }
+    .hero h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #D18A93; /* Darker shade of theme color */
+    }
+
+    /* --- Screenshot Display Styles --- */
+    .screenshot-container {
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Align items vertically */
+      gap: 5px; /* Space between screenshots */
+      margin-top: 40px;
+      perspective: 1000px; /* Add perspective for 3D transforms */
+      min-height: 450px; /* Ensure container has height */
+      flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    }
+
+    .screenshot {
+      width: auto; /* Adjust width based on content */
+      max-width: 30%; /* Limit max width */
+      height: auto; /* Maintain aspect ratio */
+      flex-shrink: 0; /* Prevent shrinking */
+      position: relative; /* Needed for z-index and transforms */
+    }
+
+    .screenshot img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 18px; /* Rounded corners like iPhone */
+      border: 1px solid #ddd; /* Subtle border */
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Softer shadow */
+      transition: transform 0.3s ease-out; /* Smooth hover effect */
+    }
+
+    /* Arrange screenshots with slight overlap and rotation */
+    .screenshot:nth-child(1) {
+      transform: rotate(-8deg) translateY(-15px) translateX(10px);
+      z-index: 1;
+    }
+    .screenshot:nth-child(2) {
+      transform: translateY(5px) scale(1.05); /* Slightly larger and forward */
+      z-index: 2; /* Bring middle screenshot to front */
+    }
+    .screenshot:nth-child(3) {
+      transform: rotate(8deg) translateY(-15px) translateX(-10px);
+      z-index: 1;
+    }
+
+    /* Hover effect */
+    .screenshot:hover {
+      transform: translateY(-10px) scale(1.08);
+      z-index: 3;
+    }
+    .screenshot:nth-child(1):hover {
+      transform: rotate(-8deg) translateY(-20px) translateX(10px) scale(1.08);
+    }
+     .screenshot:nth-child(3):hover {
+      transform: rotate(8deg) translateY(-20px) translateX(-10px) scale(1.08);
+    }
+
+
+    /* --- End Screenshot Display Styles --- */
+
+    .features {
+      padding: 40px 0;
+      background-color: #fdf6f7; /* Lighter background */
+    }
+    .features h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #D18A93; /* Darker shade of theme color */
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      text-align: center;
+    }
+    .feature-item {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .feature-item h3 {
+      margin-top: 0;
+      color: #D18A93; /* Darker shade of theme color */
+    }
+    .feature-item p {
+      flex-grow: 1;
+    }
+    .feature-item img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 15px;
+      border-radius: 4px;
+      border: 1px solid #eee;
+    }
+    .cta {
+      background-color: #F3C0C7; /* Theme color */
+      color: #444; /* Darker text for light background */
+      padding: 50px 20px;
+      text-align: center;
+    }
+    .cta h2 {
+      margin-bottom: 20px;
+    }
+    .cta-button {
+      display: inline-block;
+      background-color: #fff;
+      color: #D18A93; /* Darker shade of theme color */
+      padding: 12px 25px;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      border: 1px solid #D18A93; /* Add border for definition */
+    }
+    .cta-button:hover {
+      background-color: #D18A93; /* Darker shade on hover */
+      color: #fff; /* White text on hover */
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      color: #666;
+      font-size: 0.9em;
+      border-top: 1px solid #eee;
+      background-color: #fdf6f7; /* Match body background */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header-content {
+        justify-content: flex-start; /* Align left on smaller screens */
+      }
+      .screenshot-container {
+        min-height: 350px; /* Adjust height */
+        gap: 2px;
+      }
+      .screenshot {
+        max-width: 31%; /* Slightly adjust width */
+      }
+       .screenshot:nth-child(1) {
+        transform: rotate(-8deg) translateY(-10px) translateX(5px);
+      }
+      .screenshot:nth-child(2) {
+        transform: translateY(2px) scale(1.03);
+      }
+      .screenshot:nth-child(3) {
+        transform: rotate(8deg) translateY(-10px) translateX(-5px);
+      }
+    }
+     @media (max-width: 480px) {
+      .header-content {
+        gap: 10px; /* Reduce gap */
+        justify-content: center; /* Center again on very small screens */
+      }
+      header .logo {
+        max-height: 40px; /* Smaller logo on mobile */
+      }
+      .title-group h1 {
+        font-size: 1.8em;
+      }
+      .title-group p {
+        font-size: 0.9em;
+      }
+      .screenshot-container {
+        min-height: 250px; /* Adjust height */
+        gap: 0px;
+        margin-top: 20px;
+      }
+      .screenshot {
+        max-width: 32%; /* Adjust width */
+         border-radius: 10px;
+      }
+       .screenshot:nth-child(1) {
+        transform: rotate(-6deg) translateY(-5px) translateX(3px);
+      }
+      .screenshot:nth-child(2) {
+        transform: translateY(1px) scale(1.01);
+      }
+      .screenshot:nth-child(3) {
+        transform: rotate(6deg) translateY(-5px) translateX(-3px);
+      }
+       .screenshot img {
+         border-radius: 10px;
+         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+       }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container header-content"> <!-- Added header-content class -->
+      <!-- Logo is now the first item -->
+      <img src="images/logo.png" alt="快字典 Logo" class="logo">
+      <!-- Group title and subtitle -->
+      <div class="title-group">
+        <h1>快字典</h1>
+        <p>简洁、高效、无广告的中英文在线词典</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h2>极致用户体验，专注语言学习</h2>
+      <p>快字典致力于提供清爽界面与便捷操作。凭借高效查询引擎和全面词汇库，快速获取精准释义、例句及发音。</p>
+
+      <!-- Screenshot Display Area -->
+      <div class="screenshot-container">
+        <div class="screenshot">
+          <img src="images/screenshot1.jpeg" alt="快字典应用截图 1">
+          <!-- Replace with your actual screenshot path -->
+        </div>
+        <div class="screenshot">
+          <img src="images/screenshot2.jpeg" alt="快字典应用截图 2">
+          <!-- Replace with your actual screenshot path -->
+        </div>
+        <div class="screenshot">
+          <img src="images/screenshot3.jpeg" alt="快字典应用截图 3">
+          <!-- Replace with your actual screenshot path -->
+        </div>
+      </div>
+      <!-- End Screenshot Display Area -->
+
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <h2>核心功能</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <h3>🚀 高效查询</h3>
+          <p>快速准确地获取中英文释义、例句及发音。</p>
+        </div>
+        <div class="feature-item">
+          <h3>📚 全面词库</h3>
+          <p>覆盖广泛词汇，满足不同用户的查询需求。</p>
+        </div>
+        <div class="feature-item">
+          <h3>✨ 简洁设计</h3>
+          <p>界面清爽，操作便捷，带来纯粹的查词体验。</p>
+        </div>
+        <div class="feature-item">
+          <h3>🚫 永久无广告</h3>
+          <p>承诺无广告干扰，让您专注于学习与信息获取。</p>
+        </div>
+        <div class="feature-item">
+          <h3>📖 个性化单词本</h3>
+          <p>方便收藏和管理生词，助力词汇积累。</p>
+        </div>
+        <div class="feature-item">
+          <h3>🖨️ 精美单词卡</h3>
+          <p>支持打印单词卡片，随时随地复习词汇。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>立即体验快字典</h2>
+      <p>开启您的高效、纯净查词之旅。</p>
+      <a href="#" class="cta-button">前往下载</a>
+      <!-- Replace # with the actual download link -->
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 快字典. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Removed the slider JavaScript as it's no longer needed for this layout -->
+
+</body>
+</html>
