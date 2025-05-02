@@ -7,11 +7,11 @@
           "RJX43N7RZW.com.storytreat.dictionary"
         ],
         "paths": [
-          "/app"
+          "*"
         ],
         "components": [
           {
-            "/": "/app/*"
+            "/": "/*"
           }
         ]
       }
