@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN"></html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App 正在打开</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap');
+
+    :root {
+      --theme-color: #F3C0C7;
+      --theme-gradient-start: #FAD0C4;
+      /* --text-dark: #A7707E; */ /* Original Darker shade */
+      --text-dark: #804A55; /* More profound dark shade */
+      /* --text-medium: #BF8A95; */ /* Original Medium shade */
+      --text-medium: #995F6B; /* More profound medium shade */
+      /* --highlight-color: #D98B96; */ /* Original highlight */
+      --highlight-color: #E06C7E; /* Brighter, more distinct highlight */
+      --icon-color: #E8A0AA; /* Existing icon color */
+      --white-alpha: rgba(255, 255, 255, 0.97); /* Slightly less transparent */
+      --shadow-color: rgba(217, 139, 150, 0.25); /* Shadow related to theme */
+    }
+
+    body {
+      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--theme-gradient-start) 0%, var(--theme-color) 100%);
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+      color: var(--text-medium); /* Default text color */
+      overflow: hidden; /* Hide potential scrollbars from animations */
+    }
+    .container {
+      background-color: var(--white-alpha);
+      padding: 45px 55px; /* Slightly more padding */
+      border-radius: 20px; /* Slightly larger radius */
+      box-shadow: 0 12px 40px var(--shadow-color); /* More pronounced shadow */
+      text-align: center;
+      max-width: 480px; /* Slightly wider */
+      width: 100%;
+      backdrop-filter: blur(12px); /* Stronger blur */
+      border: 1px solid rgba(255, 255, 255, 0.4); /* More visible border */
+      transform: scale(1);
+      animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; /* Pop-in animation */
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .icon {
+      font-size: 4.2em; /* Slightly larger icon */
+      margin-bottom: 25px;
+      color: var(--icon-color);
+      animation: superEnergeticBounce 1.8s infinite; /* Even more energetic bounce */
+      display: inline-block; /* Needed for transform */
+      text-shadow: 0 4px 10px rgba(232, 160, 170, 0.4); /* Subtle glow */
+    }
+    h1 {
+      color: var(--text-dark); /* Using the more profound dark color */
+      margin-bottom: 20px;
+      font-size: 2.2em; /* Slightly larger heading */
+      font-weight: 700;
+      letter-spacing: 1.5px; /* More spacing for style */
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.05); /* Subtle shadow for depth */
+    }
+    p {
+      color: var(--text-medium); /* Using the more profound medium color */
+      line-height: 1.85; /* Slightly more line spacing */
+      margin-bottom: 18px; /* Slightly more margin */
+      font-size: 1.18em; /* Slightly larger text */
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.03); /* Very subtle shadow */
+    }
+    .highlight {
+      color: var(--highlight-color); /* Using the brighter highlight */
+      font-weight: bold;
+      /* Add a subtle pulse animation */
+      animation: pulseHighlight 1.5s infinite ease-in-out;
+      display: inline-block; /* Needed for animation */
+      /* Add a slight skew for fun? */
+      /* transform: skewX(-5deg); */ /* Uncomment for skew effect */
+    }
+
+    @keyframes pulseHighlight {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); } /* Slightly stronger pulse */
+    }
+
+    .info {
+      margin-top: 30px;
+      font-size: 0.98em; /* Slightly larger info text */
+      color: #777; /* Slightly darker grey */
+      font-style: italic;
+    }
+
+    /* Renamed and adjusted bounce animation */
+    @keyframes superEnergeticBounce {
+      0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+      20% { transform: translateY(-25px) rotate(-8deg) scale(1.1); }
+      40% { transform: translateY(5px) rotate(4deg) scale(0.95); }
+      60% { transform: translateY(-15px) rotate(-6deg) scale(1.05); }
+      80% { transform: translateY(0) rotate(2deg) scale(1); }
+    }
+
+    /* Optional Button Style - Updated */
+    /*
+    .button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 14px 35px;
+      background: linear-gradient(135deg, var(--theme-gradient-start) 0%, var(--theme-color) 100%);
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 20px var(--shadow-color);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .button:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(243, 192, 199, 0.5);
+    }
+    */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">🚀</div> <!-- Changed emoji -->
+    <h1>咻~ 正在进行时空跳跃！</h1> <!-- More dramatic/funny text -->
+    <p>如果你手机里藏着我们的 App，<span class="highlight">马上就『biu』地弹出来！</span></p> <!-- Added onomatopoeia -->
+    <p>尊贵的果粉宝宝看到这，说明 <span class="highlight">Universal Link</span> 已经安排妥当！</p> <!-- More playful/respectful text -->
+    <p class="info">有了它，App 和网页无缝对接，体验感原地起飞！🚀✨</p> <!-- Adjusted phrasing, added sparkle -->
+    <!-- Optional: Add a button -->
+    <!-- <a href="#" class="button">手动起飞</a> -->
+  </div>
+</body>
+</html>
